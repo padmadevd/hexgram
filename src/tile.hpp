@@ -18,6 +18,7 @@
 struct Tile
 {
     Tile(uint8_t id, uint8_t type);
+    virtual ~Tile();
 
     uint16_t m_id;
     uint8_t m_type;
@@ -29,16 +30,21 @@ struct Tile
 
     uint8_t m_rot;
     uint8_t m_dir;
+
+    uint8_t m_currAvatarId;
+    uint8_t m_nextAvatarId;
 };
 
 struct TileBlank : Tile
 {
     TileBlank(uint8_t id);
+    ~TileBlank() override;
 };
 
 struct TileStart : Tile
 {
     TileStart(uint8_t id);
+    ~TileStart() override;
 
     std::queue<uint8_t> m_inputQueue;
 };
@@ -46,6 +52,7 @@ struct TileStart : Tile
 struct TileEnd : Tile
 {
     TileEnd(uint8_t id);
+    ~TileEnd() override;
 
     std::queue<uint8_t> m_outputQueue;
 };
@@ -53,11 +60,13 @@ struct TileEnd : Tile
 struct TileNormal : Tile
 {
     TileNormal(uint8_t id);
+    ~TileNormal() override;
 };
 
 struct TileSplit : Tile
 {
     TileSplit(uint8_t id);
+    ~TileSplit() override;
 
     uint8_t m_splitDir;
 };
@@ -65,6 +74,7 @@ struct TileSplit : Tile
 struct TileAssign : Tile
 {
     TileAssign(uint8_t id);
+    ~TileAssign() override;
 
     bool m_dynamic;
 };
@@ -72,16 +82,19 @@ struct TileAssign : Tile
 struct TileIncrement : Tile
 {
     TileIncrement(uint8_t id);
+    ~TileIncrement() override;
 };
 
 struct TileDecrement : Tile
 {
     TileDecrement(uint8_t id);
+    ~TileDecrement() override;
 };
 
 struct TileLock : Tile
 {
     TileLock(uint8_t id);
+    ~TileLock() override;
 
     uint8_t m_keyId;
 };
@@ -89,6 +102,7 @@ struct TileLock : Tile
 struct TileKey : Tile
 {
     TileKey(uint8_t id);
+    ~TileKey() override;
 
     uint8_t m_lockId;
 };
