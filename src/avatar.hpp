@@ -7,6 +7,7 @@
 struct Avatar
 {
     Avatar(uint8_t id);
+    Avatar(uint8_t id, uint8_t dir, uint16_t x, uint16_t y, uint8_t col);
 
     uint16_t m_id;
 
@@ -21,8 +22,9 @@ struct Avatar
     uint8_t m_col;
     uint8_t m_nextCol;
 
-    bool m_willDie;
     bool m_willBorn;
+    bool m_willReach;
+    bool m_willDie;
 };
 
 struct AvatarList
@@ -33,6 +35,7 @@ struct AvatarList
     void Clear();
 
     uint16_t AddAvatar();
+    uint16_t AddAvatar(uint8_t dir, uint16_t x, uint16_t y, uint8_t col);
     void DeleteAvatar(uint16_t id);
 
     Avatar* GetAvatar(uint16_t id);

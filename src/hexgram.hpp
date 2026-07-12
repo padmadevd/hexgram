@@ -33,8 +33,8 @@ struct Hexgram
     uint32_t m_steps;
     bool m_updated;
 
-    uint16_t m_inputTile;
-    std::vector<uint16_t> m_outputTiles;
+    uint16_t m_startTile;
+    std::vector<uint16_t> m_endTiles;
 };
 
 #endif

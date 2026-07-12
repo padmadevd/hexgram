@@ -21,6 +21,8 @@ struct Grid
     Tile* GetTile(uint16_t x, uint16_t y);
     uint16_t GetTileId(uint16_t x, uint16_t y);
 
+    std::vector<uint16_t> GetAllTiles();
+
     bool IsCellEmpty(uint16_t x, uint16_t y);
 
     void MoveTile(uint16_t id, uint16_t x, uint16_t y);

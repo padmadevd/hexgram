@@ -1,9 +1,35 @@
 #include "grid.hpp"
+#include <cstdint>
+#include <vector>
 
 Grid::Grid()
 {
     m_tilesBuffer.push_back(nullptr);
     m_lastTileId = 1;
+}
+
+Grid::~Grid()
+{
+    for(Tile *tile : m_tilesBuffer)
+    {
+        if(tile != nullptr) delete tile;
+    }
+}
+
+void Grid::Clear()
+{
+    for(Tile *tile : m_tilesBuffer)
+    {
+        if(tile != nullptr) delete tile;
+    }
+    m_tilesBuffer.clear();
+
+    m_tilesBuffer.push_back(nullptr);
+    m_lastTileId = 1;
+
+    m_unusedTileIds.clear();
+
+    m_grid.clear();
 }
 
 uint16_t Grid::AddTile(Tile *src, uint16_t x, uint16_t y)
@@ -98,6 +124,15 @@ Tile* Grid::GetTile(uint16_t x, uint16_t y)
 uint16_t Grid::GetTileId(uint16_t x, uint16_t y)
 {
     return m_grid[x][y];
+}
+std::vector<uint16_t> Grid::GetAllTiles()
+{
+    std::vector<uint16_t> tiles;
+    for(Tile* tile : m_tilesBuffer)
+    {
+        if(tile != nullptr) tiles.push_back(tile->m_id);
+    }
+    return tiles;
 }
 
 bool Grid::IsCellEmpty(uint16_t x, uint16_t y)
